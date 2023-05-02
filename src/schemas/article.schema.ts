@@ -67,6 +67,4 @@ export const ARTICLE_DOCUMENT_KEYS = [
   '_tags',
 ] as const;
 
-
-
 export const ArticleSchema = SchemaFactory.createForClass(Article);

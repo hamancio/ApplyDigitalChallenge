@@ -8,7 +8,7 @@ export class ArticleModel {
   constructor(
     @InjectModel(Article.name)
     private readonly articleModel: Model<ArticleDocument>,
-  ) { }
+  ) {}
 
   async findAll(
     skip = 0,
@@ -25,12 +25,17 @@ export class ArticleModel {
     if (title) query.title = new RegExp(title, 'i');
     if (tags && tags.length > 0) query._tags = { $in: tags };
     if (monthSearch) {
-      const validMonthRegex = /^(january|february|march|april|may|june|july|august|september|october|november|december)$/i;
+      const validMonthRegex =
+        /^(january|february|march|april|may|june|july|august|september|october|november|december)$/i;
       const match = validMonthRegex.exec(monthSearch);
       if (match) {
         const year = new Date().getFullYear();
-        const monthNumber = new Date(Date.parse(monthSearch + ' 1, ' + year)).getMonth() + 1;
-        query.created_at = { $gte: new Date(`${year}-${monthNumber}-01`), $lt: new Date(`${year}-${monthNumber + 1}-01`) };
+        const monthNumber =
+          new Date(Date.parse(monthSearch + ' 1, ' + year)).getMonth() + 1;
+        query.created_at = {
+          $gte: new Date(`${year}-${monthNumber}-01`),
+          $lt: new Date(`${year}-${monthNumber + 1}-01`),
+        };
       } else {
         console.error('Invalid month: ' + monthSearch);
       }
@@ -53,7 +58,6 @@ export class ArticleModel {
 
     return articles;
   }
-
 
   async remove(id: string) {
     return this.articleModel.findByIdAndDelete(id).exec();

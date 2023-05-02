@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Article, ArticleSchema } from '../schemas/article.schema';
-import { ArticleModel } from '../models/article.model';
+import { ArticleModel } from '../modules/article.module';
 
 @Module({
   imports: [

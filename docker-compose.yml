@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  api:
+    build: .
+    environment:
+      MONGO_URL: mongodb://mongo:27017/news
+      JWT_SECRET: my_secret_key
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongo
+    networks:
+      - my-network
+
+  mongo:
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/data/db
+    networks:
+      - my-network
+
+networks:
+  my-network:

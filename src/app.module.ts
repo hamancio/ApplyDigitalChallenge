@@ -9,7 +9,8 @@ import { AuthService } from './auth/auth.service';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './auth/constants';
 import { JwtStrategy } from './jwt.strategy/jwt.strategy';
-import { UserService } from './services/user.service';
+import { UserModule } from './modules/user.module';
+import { UserController } from './controllers/user.controller';
 
 @Module({
   imports: [
@@ -19,8 +20,9 @@ import { UserService } from './services/user.service';
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '1d' },
     }),
+    UserModule,
   ],
-  controllers: [AppController, ArticleController],
-  providers: [AppService, ArticleService, AuthService, JwtStrategy, UserService],
+  controllers: [AppController, ArticleController, UserController],
+  providers: [AppService, ArticleService, AuthService, JwtStrategy],
 })
-export class AppModule { }
+export class AppModule {}
