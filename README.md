@@ -16,7 +16,7 @@ This app was built using the following technologies:
 - Node.js (Active LTS version) with NestJS framework
 - MongoDB database
 - Mongoose ORM
-- Swagger API documentation, exposed at `/api/docs`
+- Swagger API documentation, exposed at `/api-docs`
 - Docker
 
 ## Installation and Usage
