@@ -8,7 +8,7 @@
 
 ## Description
 
-# My-App
+# Apply Digital Challenge
 
 ## Stack
 
